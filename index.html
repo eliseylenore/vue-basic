@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="nav-bar">
+
+  </nav>
+  <div id="app">
+    <div class="product">
+      <div class="product-image">
+        <img :src="imageUrl" alt="">
+      </div>
+      <div class="product-info">
+        <h1> 
+          <a :href="productUrl" target="_blank" rel="noopener noreferrer">
+            {{ products[0] }}
+          </a>
+        </h1>
+        <p class="red" v-show="onSale">
+          On sale!
+        </p>
+        <p v-if="inventory > 10">In stock</p>
+        <p v-else-if="inventory <= 10 && inventory > 0">Almost sold out!</p>
+        <p v-else>Out of stock</p>
+        <div class="sizes">
+          <h3>Choose size</h3>
+          <ul>
+            <li v-for="size in sizes" :key="size.number" :class="size.quantity === 0 ? 'disabled' : ''">
+              <div class="size-number">
+                {{ size.number }}
+              </div>
+              <div class="x">
+                <div>
+                  {{size.quantity === 0 ? 'X' : ''}}
+                </div>
+              </div>
+             
+            </li>
+          </ul>
+        </div>
+        <p>
+          {{ description }}
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="main.js"></script>
